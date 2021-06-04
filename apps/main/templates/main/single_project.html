@@ -1,0 +1,132 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block styles %}
+{{ block.super }}
+<style>
+    div.jumbotron {
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        height: 450px;
+        width: 100%;
+        border-radius: 10px;
+        padding: 40px;
+        margin-bottom: 70px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    div.jumbotron:before {
+        background-color: black;
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -5;
+        opacity: 0.6;
+        background-image: url('{{project.landing_page_image}}');
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        background-size: cover;
+    }
+    /* div.jumbotron {
+        background-color: grey;
+        border-radius: 10px;
+        height: 450px;
+        color: white;
+        margin-bottom: 70px;
+    } */
+
+    .small {
+        font-weight: 800;
+    }
+
+    div.col {
+        padding: 10px 30px;
+    }
+
+    div#ratings img.icon {
+        width: 20px;
+    }
+
+    div#ratings h3 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        margin-bottom: 0;
+        margin-right: 7px;
+    }
+
+    .input-group-prepend span {
+        width: 80px;
+    }
+</style>
+{% endblock styles %}
+
+{% block content %}
+<div class="jumbotron d-flex justify-content-center align-items-center">
+    <div>
+        <div class="m-auto" style="width: fit-content;">
+            <div id="title" class="h1 font-weight-bold text-left">{{project.title}}</div>
+            <div id="user">by <span class="font-weight-bold">{{project.user.username}}</span></div>
+        </div>
+
+        <div id="ratings" class="row mt-5">
+            <div class="col d-flex align-items-center">
+                <h2 class="mr-2">{{average_review.design}}</h2>
+                <div>
+                    <img src="{% static 'images/design.svg' %}" alt="" class="icon">
+                    <p class="small text-uppercase m-0 mt-1">design</p>
+                </div>
+            </div>
+            <div class="col d-flex align-items-center">
+                <h2 class="mr-2">{{average_review.usability}}</h2>
+                <div>
+                    <img src="{% static 'images/usability.svg' %}" alt="" class="icon">
+                    <p class="small text-uppercase m-0 mt-1">usability</p>
+                </div>
+            </div>
+            <div class="col d-flex align-items-center">
+                <h2 class="mr-2">{{average_review.content}}</h2>
+                <div>
+                    <img src="{% static 'images/content.svg' %}" alt="" class="icon">
+                    <p class="small text-uppercase m-0 mt-1">content</p>
+                </div>
+            </div>
+            <div class="col text-center">
+                <h2 class="font-weight-bold">{{average_review.average}}</h2>
+                <div class="small p-0 m-0 text-uppercase">average</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-7">
+        <div class='title mb-2'>description</div>
+        <div class="text-justify">
+           {{project.description}}
+        </div>
+        {% include 'main/comments.html' %}
+    </div>
+    <div class="col-md-5 mt-5 mt-md-0">
+        <div class="title text-center mb-2">make a review</div>
+        {% if user.is_authenticated %}
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form.visible_fields %}
+            <div class="mb-5">
+                <div class="small text-muted font-weight-bold text-uppercase mb-3">{{field.label}}</div>
+                <div>{{field}}</div>
+            </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-pink w-100">Submit</button>
+        </form>
+        {% else %}
+        <div class="font-weight-bold text-muted text-center"><a href="{% url 'login' %}">Log in</a> to write a review.</div>
+    {% endif %}
+    </div>
+</div>
+
+{% endblock content %}
