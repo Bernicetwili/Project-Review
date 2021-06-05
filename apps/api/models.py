@@ -43,7 +43,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=255, unique=True)
     email = models.EmailField(max_length=255, unique=True)
     profile_pic = models.URLField(
-        default="https://res.cloudinary.com/victormainak/image/upload/v1606634881/icons8-male-user-100_zratap.png")
+        default="https://res.cloudinary.com/bernicecloud/image/upload/v1622906375/icons8-male-user-100_zratap_kygylf.png")
     bio = models.TextField(blank=True)
     website = models.URLField(null=True)
     social_media = models.JSONField(null=True)
@@ -75,7 +75,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 class Project(models.Model):
     title = models.CharField(max_length=255)
     landing_page_image = models.URLField(
-        default='https://res.cloudinary.com/victormainak/image/upload/v1606635375/default_image_01_x3tuoe.png')
+        default='https://res.cloudinary.com/bernicecloud/image/upload/v1622907260/default_image_01_x3tuoe_vormsr.png')
     description = models.TextField()
     site_url = models.URLField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
