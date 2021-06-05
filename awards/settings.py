@@ -157,3 +157,6 @@ cloudinary.config(
     api_secret=config('CLOUDINARY_API_SECRET')
 )
 
+# Sendgrid Settings
+SENDGRID_API_KEY = config('SENDGRID_API_KEY')
+SENDGRID_EMAIL_ADDRESS = config('SENDGRID_EMAIL_ADDRESS')
