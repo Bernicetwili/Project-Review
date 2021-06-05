@@ -148,6 +148,8 @@ dmypy.json
 # pytype static type analyzer
 .pytype/
 
+
+virtual/
 # profiling data
 .prof
 
