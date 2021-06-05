@@ -160,3 +160,10 @@ cloudinary.config(
 # Sendgrid Settings
 SENDGRID_API_KEY = config('SENDGRID_API_KEY')
 SENDGRID_EMAIL_ADDRESS = config('SENDGRID_EMAIL_ADDRESS')
+
+# Rest_Framework Settings
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
