@@ -28,13 +28,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-ENV_FILE = '.env'
+#ENV_FILE = '.env'
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 MODE = config('MODE')
-ALLOWED_HOSTS=['*']
+ALLOWED_HOSTS=ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 
 # Application definition
@@ -176,3 +176,6 @@ REST_FRAMEWORK = {
 
 # Custom user model settings
 AUTH_USER_MODEL = 'api.User'
+
+# Heroku settings
+django_heroku.settings(locals())
