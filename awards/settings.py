@@ -167,3 +167,6 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     )
 }
+
+# Custom user model settings
+AUTH_USER_MODEL = 'api.User'
